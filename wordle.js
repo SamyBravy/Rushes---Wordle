@@ -41,11 +41,14 @@ const showCustomAlert = (message, type = 'info') => {
     }
 
     alertContainer.appendChild(alertDiv);
-
-    setTimeout(() => {
-        alertDiv.style.opacity = '0';
-        setTimeout(() => alertDiv.remove(), 500);
-    }, 2000);
+    
+    if (type === 'warning')
+    {
+        setTimeout(() => {
+            alertDiv.style.opacity = '0';
+            setTimeout(() => alertDiv.remove(), 500);
+        }, 2000);
+    }
 };
 
 fetch("words.txt")
@@ -197,12 +200,15 @@ document.addEventListener("keydown", (e) => {
         const focusedInput = document.querySelector(".letter-input:focus");
         if (focusedInput) {
             const index = Array.from(inputs).indexOf(focusedInput);
-            if (e.key === "Backspace" && index > 0 && !inputs[index - 1].disabled)
+            if (e.key === "Backspace")
             {
-                inputs[index].value = "";
-                setTimeout(() => {
-                    inputs[index - 1].focus();
-                }, 10);
+                if (index >= 0)
+                    inputs[index].value = "";
+                if (index > 0 && !inputs[index - 1].disabled) {
+                    setTimeout(() => {
+                        inputs[index - 1].focus();
+                    }, 10);
+                }
             }
             if (e.key === "ArrowLeft" && index > 0 && !inputs[index - 1].disabled)
                 inputs[index - 1].focus();
