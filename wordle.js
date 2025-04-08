@@ -69,11 +69,6 @@ const handleSubmit = () => {
 
     if (!words.has(word)) {
         alert("This is not a valid word.");
-        inputs.forEach((input, index) => {
-            if (index >= 5 * (row - 1) && index < 5 * row)
-                input.value = "";
-        });
-        inputs[5 * (row - 1)].focus();
         return;
     }
     
