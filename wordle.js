@@ -203,13 +203,13 @@ document.addEventListener("keydown", (e) => {
             const index = Array.from(inputs).indexOf(focusedInput);
             if (e.key === "Backspace")
             {
-                if (index >= 0)
-                    inputs[index].value = "";
-                if (index > 0 && !inputs[index - 1].disabled) {
+                if (index > 0 && !inputs[index - 1].disabled && inputs[index].value === "") {
                     setTimeout(() => {
                         inputs[index - 1].focus();
                     }, 10);
                 }
+                if (index >= 0)
+                    inputs[index].value = "";
             }
             if (e.key === "ArrowLeft" && index > 0 && !inputs[index - 1].disabled)
                 inputs[index - 1].focus();
