@@ -58,7 +58,6 @@ fetch("words.txt")
         words = new Set(tmp);
         console.log("Words loaded:", words);
         selectedWord = tmp[Math.floor(Math.random() * tmp.length)];
-        console.log("Selected word:", selectedWord);
     })
     .catch(err => {
         console.error("Error loading words.txt:", err);
