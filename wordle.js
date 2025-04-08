@@ -12,11 +12,13 @@ fetch("words.txt")
         words = new Set(tmp);
         console.log("Words loaded:", words);
         selectedWord = tmp[Math.floor(Math.random() * tmp.length)];
+        console.log("Selected word:", selectedWord);
     })
     .catch(err => {
         console.error("Error loading words.txt:", err);
     });
 
+let won = false;
 let row = 1;
 
 inputs[0].focus();
@@ -44,6 +46,10 @@ inputs.forEach((input, index) => {
 const handleSubmit = () => {
     if (attemptsLeft.innerText <= 0) {
         alert("Game over! You've used all attempts, the word was: " + selectedWord);
+        return;
+    }
+    if (won) {
+        alert("You already won! Please refresh the page to play again.");
         return;
     }
 
@@ -102,6 +108,7 @@ const handleSubmit = () => {
 
     if (word === selectedWord) {
         setTimeout(() => {
+            won = true;
             alert("Congratulations! You won!");
             inputs.forEach((input, index) => {
                 input.disabled = true;
