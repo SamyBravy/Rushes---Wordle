@@ -5,6 +5,56 @@ const attemptsLeft = document.getElementById("attempts-left");
 let words = new Set();
 let selectedWord = "";
 
+// Creazione del contenitore per gli avvisi
+const alertContainer = document.createElement('div');
+alertContainer.id = 'alert-container';
+document.body.appendChild(alertContainer);
+
+// Stile di base per gli avvisi
+alertContainer.style.position = 'fixed';
+alertContainer.style.top = '87%';
+alertContainer.style.left = '50%';
+alertContainer.style.transform = 'translateX(-50%)';
+alertContainer.style.zIndex = '1000';
+alertContainer.style.width = '300px';
+alertContainer.style.pointerEvents = 'none';  // non bloccare altri eventi del mouse
+
+// Funzione per mostrare gli avvisi personalizzati
+const showCustomAlert = (message, type = 'info') => {
+    // Rimuovi tutti gli avvisi precedenti
+    const existingAlerts = alertContainer.querySelectorAll('.custom-alert');
+    existingAlerts.forEach(alert => alert.remove());
+
+    const alertDiv = document.createElement('div');
+    alertDiv.classList.add('custom-alert', type);
+    alertDiv.textContent = message;
+    
+    alertDiv.style.marginBottom = '10px';
+    alertDiv.style.padding = '10px';
+    alertDiv.style.borderRadius = '5px';
+    alertDiv.style.color = '#fff';
+    alertDiv.style.fontWeight = 'bold';
+    alertDiv.style.textAlign = 'center';
+
+    if (type === 'success') {
+        alertDiv.style.backgroundColor = '#4CAF50'; // verde
+    } else if (type === 'error') {
+        alertDiv.style.backgroundColor = '#f44336'; // rosso
+    } else if (type === 'warning') {
+        alertDiv.style.backgroundColor = '#ff9800'; // arancione
+    } else {
+        alertDiv.style.backgroundColor = '#2196F3'; // blu per info
+    }
+
+    alertContainer.appendChild(alertDiv);
+
+    // Rimuovere l'avviso dopo 1.5 secondi (1500ms)
+    setTimeout(() => {
+        alertDiv.style.opacity = '0';
+        setTimeout(() => alertDiv.remove(), 500); // rimuove l'elemento dopo la transizione
+    }, 2000);
+};
+
 fetch("words.txt")
     .then(response => response.text())
     .then(text => {
@@ -45,11 +95,11 @@ inputs.forEach((input, index) => {
 
 const handleSubmit = () => {
     if (attemptsLeft.innerText <= 0) {
-        alert("Game over! You've used all attempts, the word was: " + selectedWord);
+        showCustomAlert("Game over! You've used all attempts, the word was: " + selectedWord, 'error');
         return;
     }
     if (won) {
-        alert("You already won! Please refresh the page to play again.");
+        showCustomAlert("You already won! Please refresh the page to play again.", 'success');
         return;
     }
 
@@ -60,7 +110,7 @@ const handleSubmit = () => {
     });
 
     if (letters.includes("")) {
-        alert("Please fill in all letters.");
+        showCustomAlert("Please fill in all letters.", 'warning');
         return;
     }
 
@@ -68,7 +118,7 @@ const handleSubmit = () => {
     console.log("Submitted word:", word);
 
     if (!words.has(word)) {
-        alert("This is not a valid word.");
+        showCustomAlert("This is not a valid word.", 'warning');
         return;
     }
     
@@ -104,11 +154,10 @@ const handleSubmit = () => {
     if (word === selectedWord) {
         setTimeout(() => {
             won = true;
-            alert("Congratulations! You won!");
+            showCustomAlert("Congratulations! You won!", 'success');
             inputs.forEach((input, index) => {
                 input.disabled = true;
             });
-            return;
         }, 10);
     }
 
@@ -119,11 +168,10 @@ const handleSubmit = () => {
     
     if (attemptsLeftValue <= 1) {
         setTimeout(() => {
-            alert("Game over! You've used all attempts, the word was: " + selectedWord);
+            showCustomAlert("Game over! You've used all attempts, the word was: " + selectedWord, 'error');
             inputs.forEach((input, index) => {
                 input.disabled = true;
             });
-            return;
         }, 10);
     }
 
@@ -171,3 +219,4 @@ document.addEventListener("keydown", (e) => {
         }
     }
 });
+
