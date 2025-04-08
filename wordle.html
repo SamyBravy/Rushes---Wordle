@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <title>Wordle</title>
+        <link rel="stylesheet" href="wordle.css">
+    </head>
+
+    <body>
+        <div id="header">
+            <h1>WORDLE</h1>
+            <h2>Guess the word in 6 attempts!</h2>
+            <h3>Each letter can be:<br>
+                <span style="color: rgb(0, 175, 0);">Green</span> (correct and in the right position)<br>
+                <span style="color: rgb(255, 251, 0);">Yellow</span> (correct but in a wrong position)<br>
+                <span style="color: grey;">Grey</span> (not present in the word)</h3>
+            <h4>Remaining attempts: <span id="attempts-left">6</span></h4>
+        </div>
+        <div id="letter-container" style="display: flex; justify-content: center; margin-top: 20px;">
+            <input type="text" maxlength="2" class="letter-input" id="letter1">
+            <input type="text" maxlength="2" class="letter-input" id="letter2">
+            <input type="text" maxlength="2" class="letter-input" id="letter3">
+            <input type="text" maxlength="2" class="letter-input" id="letter4">
+            <input type="text" maxlength="2" class="letter-input" id="letter5">
+        </div>
+        <div id="letter-container" style="display: flex; justify-content: center; margin-top: 20px;">
+            <input type="text" maxlength="2" class="letter-input" id="letter1" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter2" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter3" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter4" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter5" disabled>
+        </div>
+        <div id="letter-container" style="display: flex; justify-content: center; margin-top: 20px;">
+            <input type="text" maxlength="2" class="letter-input" id="letter1" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter2" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter3" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter4" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter5" disabled>
+        </div>
+        <div id="letter-container" style="display: flex; justify-content: center; margin-top: 20px;">
+            <input type="text" maxlength="2" class="letter-input" id="letter1" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter2" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter3" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter4" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter5" disabled>
+        </div>
+        <div id="letter-container" style="display: flex; justify-content: center; margin-top: 20px;">
+            <input type="text" maxlength="2" class="letter-input" id="letter1" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter2" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter3" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter4" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter5" disabled>
+        </div>
+        <div id="letter-container" style="display: flex; justify-content: center; margin-top: 20px;">
+            <input type="text" maxlength="2" class="letter-input" id="letter1" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter2" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter3" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter4" disabled>
+            <input type="text" maxlength="2" class="letter-input" id="letter5" disabled>
+        </div>
+        <button id="submit-button">Enter</button>
+        <script src="wordle.js"></script>
+    </body>
+</html>
