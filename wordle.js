@@ -5,23 +5,19 @@ const attemptsLeft = document.getElementById("attempts-left");
 let words = new Set();
 let selectedWord = "";
 
-// Creazione del contenitore per gli avvisi
 const alertContainer = document.createElement('div');
 alertContainer.id = 'alert-container';
 document.body.appendChild(alertContainer);
 
-// Stile di base per gli avvisi
 alertContainer.style.position = 'fixed';
 alertContainer.style.top = '87%';
 alertContainer.style.left = '50%';
 alertContainer.style.transform = 'translateX(-50%)';
 alertContainer.style.zIndex = '1000';
 alertContainer.style.width = '300px';
-alertContainer.style.pointerEvents = 'none';  // non bloccare altri eventi del mouse
+alertContainer.style.pointerEvents = 'none';
 
-// Funzione per mostrare gli avvisi personalizzati
 const showCustomAlert = (message, type = 'info') => {
-    // Rimuovi tutti gli avvisi precedenti
     const existingAlerts = alertContainer.querySelectorAll('.custom-alert');
     existingAlerts.forEach(alert => alert.remove());
 
@@ -37,21 +33,18 @@ const showCustomAlert = (message, type = 'info') => {
     alertDiv.style.textAlign = 'center';
 
     if (type === 'success') {
-        alertDiv.style.backgroundColor = '#4CAF50'; // verde
+        alertDiv.style.backgroundColor = '#4CAF50'; 
     } else if (type === 'error') {
-        alertDiv.style.backgroundColor = '#f44336'; // rosso
+        alertDiv.style.backgroundColor = '#f44336'; 
     } else if (type === 'warning') {
-        alertDiv.style.backgroundColor = '#ff9800'; // arancione
-    } else {
-        alertDiv.style.backgroundColor = '#2196F3'; // blu per info
+        alertDiv.style.backgroundColor = '#ff9800'; 
     }
 
     alertContainer.appendChild(alertDiv);
 
-    // Rimuovere l'avviso dopo 1.5 secondi (1500ms)
     setTimeout(() => {
         alertDiv.style.opacity = '0';
-        setTimeout(() => alertDiv.remove(), 500); // rimuove l'elemento dopo la transizione
+        setTimeout(() => alertDiv.remove(), 500);
     }, 2000);
 };
 
@@ -175,7 +168,6 @@ const handleSubmit = () => {
         }, 10);
     }
 
-    // Enable the next row of inputs and disable the previous row
     inputs.forEach((input, index) => {
         if (index >= 5 * (row - 1) && index < 5 * row) {
             input.disabled = false;
